@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="" />
+    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraVPCStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraVPCStack.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="">
+    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="config: uploading all the missing configurations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraVPCStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraVPCStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraClusterStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraClusterStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +59,28 @@
       <option name="presentableId" value="Default" />
       <updated>1720452420118</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: creating VPC">
+      <option name="closed" value="true" />
+      <created>1720477928650</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720477928650</updated>
+    </task>
+    <task id="LOCAL-00002" summary="config: uploading all the missing configurations">
+      <option name="closed" value="true" />
+      <created>1720477970452</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720477970452</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: creating VPC" />
+    <MESSAGE value="config: uploading all the missing configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="config: uploading all the missing configurations" />
   </component>
 </project>

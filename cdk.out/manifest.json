@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/502aac291de029f89376c6c6ca3547b49bda1c779cb85f34162b76369a13bd99.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6ddadfb4eda805ac485c97468d740ba8fea02978ef61f1fc522b55abf61aa993.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -208,6 +208,24 @@
             "data": "CDKMetadataAvailable"
           }
         ],
+        "/VPC/Exports/Output{\"Ref\":\"AluraVPCPublicSubnet1Subnet62E884E2\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraVPCPublicSubnet1Subnet62E884E27A8AE815"
+          }
+        ],
+        "/VPC/Exports/Output{\"Ref\":\"AluraVPCPublicSubnet2SubnetC3D74D29\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraVPCPublicSubnet2SubnetC3D74D29273A4942"
+          }
+        ],
+        "/VPC/Exports/Output{\"Ref\":\"AluraVPCBD283083\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraVPCBD283083D685000B"
+          }
+        ],
         "/VPC/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
@@ -240,7 +258,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/244de6bc7f131e0d9c9accbbb99ec9c253f08bfa597c683bc880874bab001668.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0eeddc67117aed43a1323c4818195e4afc3403ff9988055a978d1b2215b8a713.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -275,6 +293,12 @@
             "data": "CDKMetadataAvailable"
           }
         ],
+        "/Cluster/Exports/Output{\"Ref\":\"AluraCluster5C1035CF\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraCluster5C1035CFFF1863E4"
+          }
+        ],
         "/Cluster/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
@@ -289,6 +313,158 @@
         ]
       },
       "displayName": "Cluster"
+    },
+    "Service.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "Service.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "Service": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "Service.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5856e8c9ed1ff7fbc80a7bf4628eec3a50527d07a0a0f4fbb53cc3e919b81674.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "Service.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "Cluster",
+        "VPC",
+        "Service.assets"
+      ],
+      "metadata": {
+        "/Service/AluraService/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLBAB719DC8"
+          }
+        ],
+        "/Service/AluraService/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLBSecurityGroup15174ABC"
+          }
+        ],
+        "/Service/AluraService/LB/SecurityGroup/to ServiceAluraServiceSecurityGroupA64D418C:8080": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLBSecurityGrouptoServiceAluraServiceSecurityGroupA64D418C80809B639564"
+          }
+        ],
+        "/Service/AluraService/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLBPublicListener31342720"
+          }
+        ],
+        "/Service/AluraService/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLBPublicListenerECSGroup827267C7"
+          }
+        ],
+        "/Service/AluraService/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceLoadBalancerDNS2EC0D396"
+          }
+        ],
+        "/Service/AluraService/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceServiceURL6A8B7491"
+          }
+        ],
+        "/Service/AluraService/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceTaskDefTaskRole0F12EEA5"
+          }
+        ],
+        "/Service/AluraService/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceTaskDef524442F2"
+          }
+        ],
+        "/Service/AluraService/TaskDef/app_ola/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceTaskDefappolaLogGroup38E71EDE"
+          }
+        ],
+        "/Service/AluraService/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceTaskDefExecutionRole2E02CA08"
+          }
+        ],
+        "/Service/AluraService/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceTaskDefExecutionRoleDefaultPolicy30A8BA35"
+          }
+        ],
+        "/Service/AluraService/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceD1536A49"
+          }
+        ],
+        "/Service/AluraService/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceSecurityGroupC03E32BF"
+          }
+        ],
+        "/Service/AluraService/Service/SecurityGroup/from ServiceAluraServiceLBSecurityGroup7D2B1567:8080": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AluraServiceSecurityGroupfromServiceAluraServiceLBSecurityGroup7D2B156780803C46178F"
+          }
+        ],
+        "/Service/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/Service/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/Service/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/Service/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "Service"
     },
     "Tree": {
       "type": "cdk:tree",

@@ -12,7 +12,10 @@ public class AluraAwsInfraApp {
 
         AluraVPCStack vpcStack = new AluraVPCStack(app, "VPC");
         AluraClusterStack clusterStack = new AluraClusterStack(app, "Cluster", vpcStack.getVpc());
+        AluraServiceStack serviceStack = new AluraServiceStack(app, "Service", vpcStack.getVpc(), clusterStack.getCluster());
+
         clusterStack.addDependency(vpcStack);
+        serviceStack.addDependency(clusterStack);
 
         app.synth();
     }

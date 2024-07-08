@@ -922,6 +922,32 @@
    ]
   }
  },
+ "Outputs": {
+  "ExportsOutputRefAluraVPCPublicSubnet1Subnet62E884E27A8AE815": {
+   "Value": {
+    "Ref": "AluraVPCPublicSubnet1Subnet62E884E2"
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputRefAluraVPCPublicSubnet1Subnet62E884E27A8AE815"
+   }
+  },
+  "ExportsOutputRefAluraVPCPublicSubnet2SubnetC3D74D29273A4942": {
+   "Value": {
+    "Ref": "AluraVPCPublicSubnet2SubnetC3D74D29"
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputRefAluraVPCPublicSubnet2SubnetC3D74D29273A4942"
+   }
+  },
+  "ExportsOutputRefAluraVPCBD283083D685000B": {
+   "Value": {
+    "Ref": "AluraVPCBD283083"
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputRefAluraVPCBD283083D685000B"
+   }
+  }
+ },
  "Parameters": {
   "BootstrapVersion": {
    "Type": "AWS::SSM::Parameter::Value<String>",

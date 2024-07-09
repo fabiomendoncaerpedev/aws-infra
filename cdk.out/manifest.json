@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6ddadfb4eda805ac485c97468d740ba8fea02978ef61f1fc522b55abf61aa993.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6d1d2a810e63200d12b7228be0389e01a3151d9054ef5a1dab3913a351b92428.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -224,6 +224,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ExportsOutputRefAluraVPCBD283083D685000B"
+          }
+        ],
+        "/VPC/Exports/Output{\"Fn::GetAtt\":[\"AluraVPCBD283083\",\"DefaultSecurityGroup\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttAluraVPCBD283083DefaultSecurityGroup0187D4A2"
+          }
+        ],
+        "/VPC/Exports/Output{\"Ref\":\"AluraVPCPrivateSubnet1Subnet3DA6293F\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraVPCPrivateSubnet1Subnet3DA6293F7320FA94"
+          }
+        ],
+        "/VPC/Exports/Output{\"Ref\":\"AluraVPCPrivateSubnet2Subnet4D0EBCC2\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefAluraVPCPrivateSubnet2Subnet4D0EBCC281789466"
           }
         ],
         "/VPC/BootstrapVersion": [
@@ -465,6 +483,103 @@
         ]
       },
       "displayName": "Service"
+    },
+    "RDS.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RDS.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RDS": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "RDS.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/543c7b39ba9c41d807bea110362a286a3b9254731d7bc43f95b86364d6411147.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RDS.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "VPC",
+        "RDS.assets"
+      ],
+      "metadata": {
+        "/RDS/senha": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "senha"
+          }
+        ],
+        "/RDS/RDS/from 0.0.0.0_0:3306": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RDSfrom000003306EF9D7935"
+          }
+        ],
+        "/RDS/Rds-pedidos/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdspedidosSubnetGroupA487F029"
+          }
+        ],
+        "/RDS/Rds-pedidos/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RdspedidosF4407238"
+          }
+        ],
+        "/RDS/pedidos-db-endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pedidosdbendpoint"
+          }
+        ],
+        "/RDS/pedidos-db-senha": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pedidosdbsenha"
+          }
+        ],
+        "/RDS/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RDS/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/RDS/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RDS/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RDS"
     },
     "Tree": {
       "type": "cdk:tree",

@@ -764,6 +764,30 @@
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.148.0"
                 }
+              },
+              "Output{\"Fn::GetAtt\":[\"AluraVPCBD283083\",\"DefaultSecurityGroup\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"AluraVPCBD283083\",\"DefaultSecurityGroup\"]}",
+                "path": "VPC/Exports/Output{\"Fn::GetAtt\":[\"AluraVPCBD283083\",\"DefaultSecurityGroup\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.148.0"
+                }
+              },
+              "Output{\"Ref\":\"AluraVPCPrivateSubnet1Subnet3DA6293F\"}": {
+                "id": "Output{\"Ref\":\"AluraVPCPrivateSubnet1Subnet3DA6293F\"}",
+                "path": "VPC/Exports/Output{\"Ref\":\"AluraVPCPrivateSubnet1Subnet3DA6293F\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.148.0"
+                }
+              },
+              "Output{\"Ref\":\"AluraVPCPrivateSubnet2Subnet4D0EBCC2\"}": {
+                "id": "Output{\"Ref\":\"AluraVPCPrivateSubnet2Subnet4D0EBCC2\"}",
+                "path": "VPC/Exports/Output{\"Ref\":\"AluraVPCPrivateSubnet2Subnet4D0EBCC2\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.148.0"
+                }
               }
             },
             "constructInfo": {
@@ -1500,6 +1524,189 @@
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
             "path": "Service/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.148.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.148.0"
+        }
+      },
+      "RDS": {
+        "id": "RDS",
+        "path": "RDS",
+        "children": {
+          "senha": {
+            "id": "senha",
+            "path": "RDS/senha",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.148.0"
+            }
+          },
+          "RDS": {
+            "id": "RDS",
+            "path": "RDS/RDS",
+            "children": {
+              "from 0.0.0.0_0:3306": {
+                "id": "from 0.0.0.0_0:3306",
+                "path": "RDS/RDS/from 0.0.0.0_0:3306",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrIp": "0.0.0.0/0",
+                    "description": "from 0.0.0.0/0:3306",
+                    "fromPort": 3306,
+                    "groupId": {
+                      "Fn::ImportValue": "VPC:ExportsOutputFnGetAttAluraVPCBD283083DefaultSecurityGroup0187D4A2"
+                    },
+                    "ipProtocol": "tcp",
+                    "toPort": 3306
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.148.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.148.0"
+            }
+          },
+          "Rds-pedidos": {
+            "id": "Rds-pedidos",
+            "path": "RDS/Rds-pedidos",
+            "children": {
+              "SubnetGroup": {
+                "id": "SubnetGroup",
+                "path": "RDS/Rds-pedidos/SubnetGroup",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "RDS/Rds-pedidos/SubnetGroup/Default",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "dbSubnetGroupDescription": "Subnet group for Rds-pedidos database",
+                        "subnetIds": [
+                          {
+                            "Fn::ImportValue": "VPC:ExportsOutputRefAluraVPCPrivateSubnet1Subnet3DA6293F7320FA94"
+                          },
+                          {
+                            "Fn::ImportValue": "VPC:ExportsOutputRefAluraVPCPrivateSubnet2Subnet4D0EBCC281789466"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.CfnDBSubnetGroup",
+                      "version": "2.148.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.SubnetGroup",
+                  "version": "2.148.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "RDS/Rds-pedidos/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
+                  "aws:cdk:cloudformation:props": {
+                    "allocatedStorage": "10",
+                    "copyTagsToSnapshot": true,
+                    "dbInstanceClass": "db.t3.micro",
+                    "dbInstanceIdentifier": "alura-aws-pedido-db",
+                    "dbSubnetGroupName": {
+                      "Ref": "RdspedidosSubnetGroupA487F029"
+                    },
+                    "engine": "mysql",
+                    "engineVersion": "8.0",
+                    "masterUsername": "admin",
+                    "masterUserPassword": {
+                      "Ref": "senha"
+                    },
+                    "multiAz": false,
+                    "publiclyAccessible": false,
+                    "storageType": "gp2",
+                    "vpcSecurityGroups": [
+                      {
+                        "Fn::ImportValue": "VPC:ExportsOutputFnGetAttAluraVPCBD283083DefaultSecurityGroup0187D4A2"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.CfnDBInstance",
+                  "version": "2.148.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_rds.DatabaseInstance",
+              "version": "2.148.0"
+            }
+          },
+          "pedidos-db-endpoint": {
+            "id": "pedidos-db-endpoint",
+            "path": "RDS/pedidos-db-endpoint",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.148.0"
+            }
+          },
+          "pedidos-db-senha": {
+            "id": "pedidos-db-senha",
+            "path": "RDS/pedidos-db-senha",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.148.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "RDS/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "RDS/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.148.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "RDS/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.148.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "RDS/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.148.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "RDS/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.148.0"

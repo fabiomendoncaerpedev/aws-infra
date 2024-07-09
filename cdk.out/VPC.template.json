@@ -946,6 +946,33 @@
    "Export": {
     "Name": "VPC:ExportsOutputRefAluraVPCBD283083D685000B"
    }
+  },
+  "ExportsOutputFnGetAttAluraVPCBD283083DefaultSecurityGroup0187D4A2": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AluraVPCBD283083",
+     "DefaultSecurityGroup"
+    ]
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputFnGetAttAluraVPCBD283083DefaultSecurityGroup0187D4A2"
+   }
+  },
+  "ExportsOutputRefAluraVPCPrivateSubnet1Subnet3DA6293F7320FA94": {
+   "Value": {
+    "Ref": "AluraVPCPrivateSubnet1Subnet3DA6293F"
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputRefAluraVPCPrivateSubnet1Subnet3DA6293F7320FA94"
+   }
+  },
+  "ExportsOutputRefAluraVPCPrivateSubnet2Subnet4D0EBCC281789466": {
+   "Value": {
+    "Ref": "AluraVPCPrivateSubnet2Subnet4D0EBCC2"
+   },
+   "Export": {
+    "Name": "VPC:ExportsOutputRefAluraVPCPrivateSubnet2Subnet4D0EBCC281789466"
+   }
   }
  },
  "Parameters": {

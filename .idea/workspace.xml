@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="config: uploading all the missing configurations">
+    <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="feat: creating rds database service">
+      <change afterPath="$PROJECT_DIR$/cdk.out/RDS.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cdk.out/RDS.template.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cdk.out/read.14836.1.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraRDSStack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/VPC.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/VPC.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/VPC.template.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/VPC.template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/read.3028.1.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/tree.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/tree.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraClusterStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraClusterStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,23 +28,23 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2iyAPWJUNbzROpOVIF83gba81bk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/curso/alura-aws-infra"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/curso/alura-aws-infra&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.myorg" />
@@ -75,12 +82,22 @@
       <option name="project" value="LOCAL" />
       <updated>1720477970452</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: creating cdk service">
+      <option name="closed" value="true" />
+      <created>1720479240868</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720479240868</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: creating VPC" />
     <MESSAGE value="config: uploading all the missing configurations" />
-    <option name="LAST_COMMIT_MESSAGE" value="config: uploading all the missing configurations" />
+    <MESSAGE value="feat: creating cdk service" />
+    <MESSAGE value="feat: creating rds database service" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: creating rds database service" />
   </component>
 </project>

@@ -349,7 +349,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5856e8c9ed1ff7fbc80a7bf4628eec3a50527d07a0a0f4fbb53cc3e919b81674.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cfe1ba38effcc06ac20b12d98c460b8a996b3b3a62733d717db064e5eb897885.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -363,10 +363,17 @@
       },
       "dependencies": [
         "Cluster",
+        "RDS",
         "VPC",
         "Service.assets"
       ],
       "metadata": {
+        "/Service/PedidosMsgLogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PedidosMsgLogGroupFBE38DBF"
+          }
+        ],
         "/Service/AluraService/LB/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -419,12 +426,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "AluraServiceTaskDef524442F2"
-          }
-        ],
-        "/Service/AluraService/TaskDef/app_ola/LogGroup/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AluraServiceTaskDefappolaLogGroup38E71EDE"
           }
         ],
         "/Service/AluraService/TaskDef/ExecutionRole/Resource": [

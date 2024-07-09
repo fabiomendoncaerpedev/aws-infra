@@ -915,6 +915,39 @@
         "id": "Service",
         "path": "Service",
         "children": {
+          "repositorio": {
+            "id": "repositorio",
+            "path": "Service/repositorio",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.RepositoryBase",
+              "version": "2.148.0"
+            }
+          },
+          "PedidosMsgLogGroup": {
+            "id": "PedidosMsgLogGroup",
+            "path": "Service/PedidosMsgLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Service/PedidosMsgLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "PedidosMsLog",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.148.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.148.0"
+            }
+          },
           "AluraService": {
             "id": "AluraService",
             "path": "Service/AluraService",
@@ -1174,7 +1207,25 @@
                         "containerDefinitions": [
                           {
                             "essential": true,
-                            "image": "jacquelineoliveira/ola:1.0",
+                            "image": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  {
+                                    "Ref": "AWS::AccountId"
+                                  },
+                                  ".dkr.ecr.",
+                                  {
+                                    "Ref": "AWS::Region"
+                                  },
+                                  ".",
+                                  {
+                                    "Ref": "AWS::URLSuffix"
+                                  },
+                                  "/img-ms-pedidos:latest"
+                                ]
+                              ]
+                            },
                             "name": "app_ola",
                             "portMappings": [
                               {
@@ -1186,14 +1237,41 @@
                               "logDriver": "awslogs",
                               "options": {
                                 "awslogs-group": {
-                                  "Ref": "AluraServiceTaskDefappolaLogGroup38E71EDE"
+                                  "Ref": "PedidosMsgLogGroupFBE38DBF"
                                 },
-                                "awslogs-stream-prefix": "AluraService",
+                                "awslogs-stream-prefix": "PedidosMS",
                                 "awslogs-region": {
                                   "Ref": "AWS::Region"
                                 }
                               }
-                            }
+                            },
+                            "environment": [
+                              {
+                                "name": "SPRING_DATASOURCE_URL",
+                                "value": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "jdbc:mysql://",
+                                      {
+                                        "Fn::ImportValue": "pedidos-db-endpoint"
+                                      },
+                                      ":3306/alurafood-pedidos?createDatabaseIfNotExist=true"
+                                    ]
+                                  ]
+                                }
+                              },
+                              {
+                                "name": "SPRING_DATASOURCE_PASSWORD",
+                                "value": {
+                                  "Fn::ImportValue": "pedidos-db-senha"
+                                }
+                              },
+                              {
+                                "name": "SPRING_DATASOURCE_USERNAME",
+                                "value": "admin"
+                              }
+                            ]
                           }
                         ],
                         "cpu": "512",
@@ -1225,30 +1303,6 @@
                   "app_ola": {
                     "id": "app_ola",
                     "path": "Service/AluraService/TaskDef/app_ola",
-                    "children": {
-                      "LogGroup": {
-                        "id": "LogGroup",
-                        "path": "Service/AluraService/TaskDef/app_ola/LogGroup",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "Service/AluraService/TaskDef/app_ola/LogGroup/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
-                              "aws:cdk:cloudformation:props": {}
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
-                              "version": "2.148.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_logs.LogGroup",
-                          "version": "2.148.0"
-                        }
-                      }
-                    },
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
                       "version": "2.148.0"
@@ -1305,13 +1359,46 @@
                                   "Statement": [
                                     {
                                       "Action": [
+                                        "ecr:BatchCheckLayerAvailability",
+                                        "ecr:BatchGetImage",
+                                        "ecr:GetDownloadUrlForLayer"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            "arn:",
+                                            {
+                                              "Ref": "AWS::Partition"
+                                            },
+                                            ":ecr:",
+                                            {
+                                              "Ref": "AWS::Region"
+                                            },
+                                            ":",
+                                            {
+                                              "Ref": "AWS::AccountId"
+                                            },
+                                            ":repository/img-ms-pedidos"
+                                          ]
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": "ecr:GetAuthorizationToken",
+                                      "Effect": "Allow",
+                                      "Resource": "*"
+                                    },
+                                    {
+                                      "Action": [
                                         "logs:CreateLogStream",
                                         "logs:PutLogEvents"
                                       ],
                                       "Effect": "Allow",
                                       "Resource": {
                                         "Fn::GetAtt": [
-                                          "AluraServiceTaskDefappolaLogGroup38E71EDE",
+                                          "PedidosMsgLogGroupFBE38DBF",
                                           "Arn"
                                         ]
                                       }
@@ -1367,7 +1454,7 @@
                           "maximumPercent": 200,
                           "minimumHealthyPercent": 50
                         },
-                        "desiredCount": 1,
+                        "desiredCount": 3,
                         "enableEcsManagedTags": false,
                         "healthCheckGracePeriodSeconds": 60,
                         "launchType": "FARGATE",

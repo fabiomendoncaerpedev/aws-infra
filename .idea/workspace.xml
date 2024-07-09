@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1990c41-f197-4cce-8025-0ea46968c004" name="Changes" comment="feat: creating rds database service">
-      <change afterPath="$PROJECT_DIR$/cdk.out/RDS.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cdk.out/RDS.template.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cdk.out/read.14836.1.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraRDSStack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdk.out/VPC.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/VPC.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdk.out/VPC.template.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/VPC.template.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/Service.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/Service.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/Service.template.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/Service.template.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdk.out/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdk.out/read.3028.1.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdk.out/read.14836.1.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cdk.out/tree.json" beforeDir="false" afterPath="$PROJECT_DIR$/cdk.out/tree.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraAwsInfraApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/myorg/AluraServiceStack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +87,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720479240868</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: creating rds database service">
+      <option name="closed" value="true" />
+      <created>1720535129622</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720535129622</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

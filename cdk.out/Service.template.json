@@ -1,5 +1,17 @@
 {
  "Resources": {
+  "PedidosMsgLogGroupFBE38DBF": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "PedidosMsLog",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "Service/PedidosMsgLogGroup/Resource"
+   }
+  },
   "AluraServiceLBAB719DC8": {
    "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
    "Properties": {
@@ -143,15 +155,60 @@
    "Properties": {
     "ContainerDefinitions": [
      {
+      "Environment": [
+       {
+        "Name": "SPRING_DATASOURCE_URL",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "jdbc:mysql://",
+           {
+            "Fn::ImportValue": "pedidos-db-endpoint"
+           },
+           ":3306/alurafood-pedidos?createDatabaseIfNotExist=true"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "SPRING_DATASOURCE_PASSWORD",
+        "Value": {
+         "Fn::ImportValue": "pedidos-db-senha"
+        }
+       },
+       {
+        "Name": "SPRING_DATASOURCE_USERNAME",
+        "Value": "admin"
+       }
+      ],
       "Essential": true,
-      "Image": "jacquelineoliveira/ola:1.0",
+      "Image": {
+       "Fn::Join": [
+        "",
+        [
+         {
+          "Ref": "AWS::AccountId"
+         },
+         ".dkr.ecr.",
+         {
+          "Ref": "AWS::Region"
+         },
+         ".",
+         {
+          "Ref": "AWS::URLSuffix"
+         },
+         "/img-ms-pedidos:latest"
+        ]
+       ]
+      },
       "LogConfiguration": {
        "LogDriver": "awslogs",
        "Options": {
         "awslogs-group": {
-         "Ref": "AluraServiceTaskDefappolaLogGroup38E71EDE"
+         "Ref": "PedidosMsgLogGroupFBE38DBF"
         },
-        "awslogs-stream-prefix": "AluraService",
+        "awslogs-stream-prefix": "PedidosMS",
         "awslogs-region": {
          "Ref": "AWS::Region"
         }
@@ -190,14 +247,6 @@
     "aws:cdk:path": "Service/AluraService/TaskDef/Resource"
    }
   },
-  "AluraServiceTaskDefappolaLogGroup38E71EDE": {
-   "Type": "AWS::Logs::LogGroup",
-   "UpdateReplacePolicy": "Retain",
-   "DeletionPolicy": "Retain",
-   "Metadata": {
-    "aws:cdk:path": "Service/AluraService/TaskDef/app_ola/LogGroup/Resource"
-   }
-  },
   "AluraServiceTaskDefExecutionRole2E02CA08": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -225,13 +274,46 @@
      "Statement": [
       {
        "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ecr:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":repository/img-ms-pedidos"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
         "logs:CreateLogStream",
         "logs:PutLogEvents"
        ],
        "Effect": "Allow",
        "Resource": {
         "Fn::GetAtt": [
-         "AluraServiceTaskDefappolaLogGroup38E71EDE",
+         "PedidosMsgLogGroupFBE38DBF",
          "Arn"
         ]
        }
@@ -260,7 +342,7 @@
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
-    "DesiredCount": 1,
+    "DesiredCount": 3,
     "EnableECSManagedTags": false,
     "HealthCheckGracePeriodSeconds": 60,
     "LaunchType": "FARGATE",
@@ -360,7 +442,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Qy26DMBD8ltyNC1Gl9tq3WkVqBblHG7NBWxwb2QtVhPj3GpNEpK168sx4vDPrpcyub2W6gC+fqLJONG1lXzCoWgRp06PymwaY0Rkv75pGkwIma1YWynvQYBSWz+AqYCzQdaRQoAbPpHRwbKODTNUtZf/3aycedpd87iPPaI6eE57dr0My8ouzbTNaZnQQqEJmgap1xIez5X/hqXLo/S/51UR9nOllf1x3Db5+xB0ZGptM8ZeKNQwUGs+0H18VgyIcBMFe9rnVUY3nhw17HkY6oUFoW4UCK1ud65/wMIzsveWmZZGjt62b5s9xaFTGHoN4gw6ushuZyixdfHqixLWGaY8yn85vZqFJCxkCAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QXW/CMAz8LbyHDNCk7XXsS5smbWp5RyY1lUdIqthlqqr+96UpoO5DPPl8ufjOXuj59a2eTeCLp6bYTS1tdJsLmJ2K1LpFE3SGlWcSH5olMCrrS9btmy+fg68rdb91J9wpNLyuQASDY31XVZYMCPmogGIJFpzB4glCCYI5hgMZVGiBhYyNik1SkCsPC93+/zsMfqN+rCMWdEfNCY/eV9EZ5Rx71PbJo2eOpg4kzVlymXgsAzL/oV9c4tM1dHtcdwW8e8AtOeqTDPY/Ge8EKCYecb9OlYwS7BTBXreZt4lN9cPHPZu+HVDX9fi9lqoWlSH7Ogwzxji6FsmrU69wgKv5jZ7p+WzyyUTTUDuhPepsqN+RudkeLAIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "Service/CDKMetadata/Default"
